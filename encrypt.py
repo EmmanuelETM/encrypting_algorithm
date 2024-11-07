@@ -24,3 +24,29 @@ def valid_paragraphs(text):
             valid_paragraphs += 1
     
     return valid_paragraphs >= 2
+
+
+def main():
+    print("Encrypt/Decrypt program!!!\n\n")
+    
+    file_path = input("Enter the route of the file (Ex. text.txt): ")
+    text = read_text_from_file(file_path)
+    
+    if text is None or not valid_paragraphs(text):
+        print("\n\nThat text is not valid!!")
+        return
+    
+    print("\nText read correctly!\n")
+    
+    encryption_key = input("Enter the encrypt key (8 characters): ")
+    while len(encryption_key) < 8:
+        print("\nThe key must have 8 characters")
+        key = input("\nPor favor, ingresa una clave de al menos 8 caracteres: ")
+    
+
+
+if __name__ == "__main__":
+    main()
+
+
+

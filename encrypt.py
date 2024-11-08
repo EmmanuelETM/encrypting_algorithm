@@ -68,10 +68,14 @@ def valid_paragraphs(text):
 def main():
     print("Encrypt/Decrypt program!!!\n\n")
     
-    file_path = input("Enter the route of the file (Ex. text.txt): ")
-    text = read_text_from_file(file_path)
-    
-    if text is None or not valid_paragraphs(text):
+    file_path = input("Enter the route of the file (Default: text.txt): ")
+
+    if file_path == '':
+        text = read_text_from_file('text.txt')
+    else:
+        text = read_text_from_file(file_path)
+
+    if not valid_paragraphs(text):
         print("\n\nThat text is not valid!!")
         return
     

@@ -70,8 +70,21 @@ def main():
     encryption_key = input("Enter the encrypt key (8 characters): ")
     while len(encryption_key) < 8:
         print("\nThe key must have 8 characters")
-        key = input("\nPor favor, ingresa una clave de al menos 8 caracteres: ")
+        key = input("\nPlease, enter a valid key (8 characters): ")
     
+    #encrypt the text
+    encrypted_text = encrypt(text, encryption_key)
+    print(f"\Encrypted Text:\n\n{encrypted_text}")
+
+
+    decryption_key = input("\nEnter the key to decrypt the text: ")
+    while decryption_key != encryption_key:
+        print("The keys don't match")
+        key_for_decryption = input("Please, enter the correct key: ")
+        
+    #Decrypt the text
+    decrypted_text = decrypt(encrypted_text, key_for_decryption)
+    print(f"\Decrypted Text:\n\n{decrypted_text}")
 
 
 if __name__ == "__main__":

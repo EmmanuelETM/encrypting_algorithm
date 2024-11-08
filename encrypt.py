@@ -38,6 +38,15 @@ def read_text_from_file(file_path):
     except Exception as e:
         print(f"Error al leer el archivo: {e}")
         return None
+    
+
+def write_to_file(file_path, encrypted_text, decrypted_text):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write("===================== TEXTO ENCRIPTADO =====================\n")
+        file.write(encrypted_text + "\n\n")
+        file.write("\n\n===================== TEXTO DESENCRIPTADO =====================\n")
+        file.write(decrypted_text + "\n")
+    print(f"\nFile created. Data has been writen'{file_path}'.")
 
 
 def valid_paragraphs(text):
@@ -53,6 +62,7 @@ def valid_paragraphs(text):
             valid_paragraphs += 1
     
     return valid_paragraphs >= 2
+
 
 
 def main():
@@ -71,20 +81,18 @@ def main():
     while len(encryption_key) < 8:
         print("\nThe key must have 8 characters")
         key = input("\nPlease, enter a valid key (8 characters): ")
-    
-    #encrypt the text
-    encrypted_text = encrypt(text, encryption_key)
-    print(f"\Encrypted Text:\n\n{encrypted_text}")
 
+    encrypted_text = encrypt(text, encryption_key)
 
     decryption_key = input("\nEnter the key to decrypt the text: ")
     while decryption_key != encryption_key:
         print("The keys don't match")
-        key_for_decryption = input("Please, enter the correct key: ")
-        
-    #Decrypt the text
-    decrypted_text = decrypt(encrypted_text, key_for_decryption)
-    print(f"\Decrypted Text:\n\n{decrypted_text}")
+        decryption_key = input("Please, enter the correct key: ")
+
+    decrypted_text = decrypt(encrypted_text, decryption_key)
+
+    output_file = "output.txt"
+    write_to_file(output_file, encrypted_text, decrypted_text)
 
 
 if __name__ == "__main__":
